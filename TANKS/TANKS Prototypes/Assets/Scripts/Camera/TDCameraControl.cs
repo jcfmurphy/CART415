@@ -6,6 +6,7 @@ public class TDCameraControl : MonoBehaviour {
 
 	public GameObject m_Tank;
 	public GameObject m_Cube;
+	public CubeSide m_CubeSide;
 
 	private Vector3 m_TargetPosition;
 	private Quaternion m_OffsetRotation;
@@ -14,11 +15,10 @@ public class TDCameraControl : MonoBehaviour {
 	private float m_MoveSpeed = 5.0f;
 	private float m_RotateSpeed = 10f;
 
-
 	// Use this for initialization
 	void Start () {
 		m_Transform = this.gameObject.transform;
-		m_OffsetRotation = Quaternion.AngleAxis (90f, Vector3.forward);
+		m_OffsetRotation = Quaternion.AngleAxis (90f, m_CubeSide.m_CameraRotateVector);
 	}
 
 
@@ -42,5 +42,10 @@ public class TDCameraControl : MonoBehaviour {
 		Vector3 tempUp = Vector3.Slerp (m_Transform.up, m_Tank.transform.forward, m_RotateSpeed);
 			
 		m_Transform.LookAt (m_Cube.transform, tempUp);
+	}
+
+	public void SetCubeSide(CubeSide cubeside) {
+		m_CubeSide = cubeside;
+		m_OffsetRotation = Quaternion.AngleAxis (90f, m_CubeSide.m_CameraRotateVector);
 	}
 }

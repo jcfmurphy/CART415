@@ -5,7 +5,6 @@ using UnityEngine;
 public class Portal : MonoBehaviour {
 
 	public Portal m_LinkedPortal;
-	public RotateCube m_Cube;
 	public CubeSide m_CubeSide;
 	public Color m_StartColor;
 	public Color m_StartEmission;
@@ -17,6 +16,7 @@ public class Portal : MonoBehaviour {
 	private Transform m_Transform;
 	private Transform m_LinkedTransform;
 	private MeshRenderer m_Renderer;
+	private TDCameraControl m_CameraControl;
 
 
 	// Use this for initialization
@@ -28,6 +28,7 @@ public class Portal : MonoBehaviour {
 		m_GlowEmission = new Color (0.5f, 0.0f, 0.0f);
 		m_StartColor = new Color(0.2353f, 0.6588f, 0.6588f, 0.4353f);
 		m_StartEmission = new Color (0.0f, 0.0f, 0.0f);
+		m_CameraControl = Camera.main.GetComponent<TDCameraControl>();
 	}
 
 
@@ -76,18 +77,14 @@ public class Portal : MonoBehaviour {
 
 			hasWarped.SetWarped (true);
 
-			SetCubeTarget (m_LinkedPortal.m_CubeSide.m_RotateVector);
+			m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
 
 			Glow ();
 
 			m_LinkedPortal.Glow();
 		}
 	}
-
-	void SetCubeTarget (Vector3 targetVector) {
-		m_Cube.SetTarget (targetVector);
-	}
-
+		
 
 	void Glow() {
 		m_Renderer.material.color = m_GlowColor;

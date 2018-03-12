@@ -6,5 +6,6 @@ using UnityEngine;
 public class CubeSide : ScriptableObject {
 
 	public Vector3 m_RotateVector;
+	public Vector3 m_CameraRotateVector;
 
 }
