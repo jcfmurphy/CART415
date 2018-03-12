@@ -36,7 +36,7 @@ public class TankShooting : MonoBehaviour
     }
     
 
-	protected void Update()
+	protected virtual void Update()
     {
         // Track the current state of the fire button and make decisions based on the current launch force.
 		m_AimSlider.value = m_MinLaunchForce;
@@ -60,7 +60,7 @@ public class TankShooting : MonoBehaviour
     }
 
 
-	public void Fire()
+	public virtual void Fire()
     {
         // Instantiate and launch the shell.
 		m_Fired = true;

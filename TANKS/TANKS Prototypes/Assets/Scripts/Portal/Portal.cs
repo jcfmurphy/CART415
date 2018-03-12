@@ -6,11 +6,11 @@ public class Portal : MonoBehaviour {
 
 	public Portal m_LinkedPortal;
 	public CubeSide m_CubeSide;
-	public Color m_StartColor;
-	public Color m_StartEmission;
-	public Color m_GlowColor;
-	public Color m_GlowEmission;
 
+	private Color m_StartColor;
+	private Color m_StartEmission;
+	private Color m_GlowColor;
+	private Color m_GlowEmission;
 	private float m_GlowTimer = 0;
 	private bool m_Glowing = false;
 	private Transform m_Transform;

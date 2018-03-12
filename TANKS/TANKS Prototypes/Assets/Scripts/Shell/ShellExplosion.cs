@@ -17,7 +17,7 @@ public class ShellExplosion : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         // Find all the tanks in an area around the shell and damage them.
 		Collider[] colliders = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_TankMask);
@@ -54,7 +54,7 @@ public class ShellExplosion : MonoBehaviour
     }
 
 
-    private float CalculateDamage(Vector3 targetPosition)
+    protected float CalculateDamage(Vector3 targetPosition)
     {
         // Calculate the amount of damage a target should take based on it's position.
 		Vector3 explosionToTarget = targetPosition - transform.position;
