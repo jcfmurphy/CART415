@@ -3,7 +3,7 @@
 public class TDShellExplosion : ShellExplosion
 {
     
-	public LayerMask m_ShellPortalMask;
+	public LayerMask m_PortalMask;
 	public Transform m_SpriteTransform;
 
 	private float m_MovementSpeed = 20f;
@@ -61,11 +61,35 @@ public class TDShellExplosion : ShellExplosion
 
 			Destroy (gameObject);
 
-		} else if (m_ShellPortalMask.value == 1 << other.gameObject.layer) {
+		} else if (m_PortalMask.value == 1 << other.gameObject.layer) {
 
 			Vector3 rotationAxis = other.gameObject.transform.right;
 
 			transform.RotateAround (m_SpriteTransform.position, rotationAxis, 90f);
+
+			transform.position += other.gameObject.transform.forward * 0.5f;
+
+			Vector3 upOffset = other.gameObject.transform.up * 11.1f;
+
+			if (upOffset.x > 1f || upOffset.x < -1f) {
+
+				Vector3 newTransform = new Vector3 (upOffset.x, transform.position.y, transform.position.z);
+
+				transform.position = newTransform;
+
+			} else if (upOffset.y > 1f || upOffset.y < -1f) {
+
+				Vector3 newTransform = new Vector3 (transform.position.x, upOffset.y, transform.position.z);
+
+				transform.position = newTransform;
+
+			} else if (upOffset.z > 1f || upOffset.z < -1f) {
+
+				Vector3 newTransform = new Vector3 (transform.position.x, transform.position.y, upOffset.z);
+
+				transform.position = newTransform;
+
+			}
 
 		}
 
