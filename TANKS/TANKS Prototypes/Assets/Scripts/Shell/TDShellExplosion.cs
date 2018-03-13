@@ -9,6 +9,7 @@ public class TDShellExplosion : ShellExplosion
 	private float m_MovementSpeed = 20f;
 	private Rigidbody m_RigidBody;
 	private Transform m_Transform;
+	private bool m_PassedLauncher = false;
 
 	protected override void Start()
 	{
@@ -27,7 +28,7 @@ public class TDShellExplosion : ShellExplosion
 
 	protected override void OnTriggerEnter(Collider other)
     {
-		if (m_TankMask.value == 1 << other.gameObject.layer) {
+		if (m_TankMask.value == 1 << other.gameObject.layer && m_PassedLauncher) {
 			// Find all the tanks in an area around the shell and damage them.
 			Collider[] colliders = Physics.OverlapSphere (transform.position, m_ExplosionRadius, m_TankMask);
 
@@ -94,4 +95,11 @@ public class TDShellExplosion : ShellExplosion
 		}
 
     }
+
+
+	private void OnTriggerExit(Collider other) {
+		if (m_TankMask.value == 1 << other.gameObject.layer) {
+			m_PassedLauncher = true;
+		}
+	}
 }
