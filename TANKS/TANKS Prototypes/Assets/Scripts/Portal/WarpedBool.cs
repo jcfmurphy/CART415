@@ -11,7 +11,7 @@ public class WarpedBool : MonoBehaviour {
 		m_Warped = false;
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		if (m_Warped) {
 			m_Warped = false;
 		}
