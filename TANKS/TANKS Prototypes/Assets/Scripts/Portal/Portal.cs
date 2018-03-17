@@ -77,11 +77,15 @@ public class Portal : MonoBehaviour {
 
 			hasWarped.SetWarped (true);
 
-			m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
-
 			Glow ();
 
 			m_LinkedPortal.Glow();
+
+			if (tankTransform.gameObject.name == "3DTank(Clone)") {
+
+				m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
+
+			}
 		}
 	}
 		
