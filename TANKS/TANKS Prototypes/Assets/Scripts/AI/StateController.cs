@@ -10,7 +10,7 @@ public class StateController : MonoBehaviour {
 	public EnemyStats enemyStats;
 	public Transform eyes;
 	public State remainState;
-
+	public CubeSide m_CubeSide;
 
 	[HideInInspector] public NavMeshAgent navMeshAgent;
 	[HideInInspector] public TankShooting tankShooting;
@@ -72,5 +72,9 @@ public class StateController : MonoBehaviour {
 	private void OnExitState()
 	{
 		stateTimeElapsed = 0;
+	}
+
+	public void SetCubeSide(CubeSide tempSide) {
+		m_CubeSide = tempSide;
 	}
 }

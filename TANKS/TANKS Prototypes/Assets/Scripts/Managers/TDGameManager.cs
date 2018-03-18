@@ -16,7 +16,7 @@ public class TDGameManager : MonoBehaviour
 	public List<Transform> m_SpawnPoints;
 	public TDCameraControl m_CameraControl;
 
-	private float m_SpawnDelay = 6f;
+	private float m_SpawnDelay = 15f;
 	protected float m_SpawnTimer = 0f;
 	protected Vector3 m_CheckBoxSize = new Vector3(1.25f, 1.25f, 1.25f);
 	protected TDTankManager[] m_AITanks;
@@ -66,6 +66,10 @@ public class TDGameManager : MonoBehaviour
 			m_AITanks [m_SpawnsRemaining - 1].m_IsAITank = true;
 
 			m_AITanks [m_SpawnsRemaining - 1].SetupAI (m_SpawnPoints);
+
+			StateController tempController = m_AITanks [m_SpawnsRemaining - 1].m_Instance.GetComponent<StateController>();
+			TDSpawnPointSide tempSide = tempSpawnPoint.gameObject.GetComponent<TDSpawnPointSide> ();
+			tempController.SetCubeSide (tempSide.m_CubeSide);
 
 			m_SpawnsRemaining -= 1;
 			m_SpawnTimer = 0f;

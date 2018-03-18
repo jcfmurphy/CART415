@@ -90,11 +90,8 @@ public class Portal : MonoBehaviour {
 
 			m_LinkedPortal.Glow();
 
-			if (tankTransform.gameObject.name == "3DTank(Clone)") {
+			m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
 
-				m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
-
-			}
 		}
 	}
 
@@ -108,6 +105,10 @@ public class Portal : MonoBehaviour {
 			Transform tankTransform = tankCollider.gameObject.transform.parent.transform;
 
 			NavMeshAgent tankAgent = tankCollider.gameObject.transform.parent.GetComponent<NavMeshAgent> ();
+
+			StateController tempController = tankCollider.gameObject.transform.parent.GetComponent<StateController> ();
+
+			tempController.SetCubeSide (m_LinkedPortal.m_CubeSide);
 
 			Vector3 newPosition = tankTransform.position - m_Transform.position;
 
@@ -125,11 +126,6 @@ public class Portal : MonoBehaviour {
 
 			m_LinkedPortal.Glow();
 
-			if (tankTransform.gameObject.name == "3DTank(Clone)") {
-
-				m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
-
-			}
 		}
 	}
 		
