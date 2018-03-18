@@ -11,10 +11,10 @@ public class TankHealth : MonoBehaviour
     public GameObject m_ExplosionPrefab;
     
     
-    private AudioSource m_ExplosionAudio;          
-    private ParticleSystem m_ExplosionParticles;   
-    private float m_CurrentHealth;  
-    private bool m_Dead;            
+    protected AudioSource m_ExplosionAudio;          
+    protected ParticleSystem m_ExplosionParticles;   
+    protected float m_CurrentHealth;  
+    protected bool m_Dead;            
 
 
     private void Awake()
@@ -35,7 +35,7 @@ public class TankHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount)
     {
         // Adjust the tank's current health, update the UI based on the new health and check whether or not the tank is dead.
 		m_CurrentHealth -= amount;
@@ -48,7 +48,7 @@ public class TankHealth : MonoBehaviour
     }
 
 
-    private void SetHealthUI()
+    protected void SetHealthUI()
     {
         // Adjust the value and colour of the slider.
 		m_Slider.value = m_CurrentHealth;

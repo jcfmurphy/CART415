@@ -19,4 +19,12 @@ public class TDTankShooting : TankShooting
 		m_ShootingAudio.clip = m_FireClip;
 		m_ShootingAudio.Play ();
 	}
+		
+	public override void Fire (float fireRate)
+	{
+		if (Time.time > m_NextFireTime) {
+			m_NextFireTime = Time.time + fireRate;
+			Fire ();
+		}
+	}
 }

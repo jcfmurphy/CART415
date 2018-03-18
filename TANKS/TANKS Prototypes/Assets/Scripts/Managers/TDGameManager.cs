@@ -16,8 +16,8 @@ public class TDGameManager : MonoBehaviour
 	public List<Transform> m_SpawnPoints;
 	public TDCameraControl m_CameraControl;
 
-	private float m_SpawnDelay = 15f;
-	protected float m_SpawnTimer = 0f;
+	private float m_SpawnDelay = 8f;
+	protected float m_SpawnTimer = 5f;
 	protected Vector3 m_CheckBoxSize = new Vector3(1.25f, 1.25f, 1.25f);
 	protected TDTankManager[] m_AITanks;
 	protected TDTankManager m_PlayerTank;       

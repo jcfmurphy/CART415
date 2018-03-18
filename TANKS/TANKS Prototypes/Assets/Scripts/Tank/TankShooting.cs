@@ -14,7 +14,7 @@ public class TankShooting : MonoBehaviour
     public float m_MaxLaunchForce = 30f; 
     public float m_MaxChargeTime = 0.75f;
 
-	protected float m_NextFireTime;
+	protected float m_NextFireTime = 0;
 	protected string m_FireButton;         
 	protected float m_CurrentLaunchForce;  
 	protected float m_ChargeSpeed;         
@@ -98,5 +98,11 @@ public class TankShooting : MonoBehaviour
 			// Reset the launch force.  This is a precaution in case of missing button events.
 			m_CurrentLaunchForce = m_MinLaunchForce;
 		}
+	}
+		
+
+	public virtual void Fire (float fireRate)
+	{
+
 	}
 }
