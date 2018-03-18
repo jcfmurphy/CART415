@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Portal : MonoBehaviour {
 
@@ -51,7 +52,15 @@ public class Portal : MonoBehaviour {
 
 		if (tankCollider.gameObject.tag == "PortalCollider") {
 
-			Warp (tankCollider);
+			if (tankCollider.transform.parent.name == "3DTank(Clone)") {
+
+				Warp (tankCollider);
+
+			} else {
+
+				WarpAI (tankCollider);
+
+			}
 
 		}
 	}
@@ -74,6 +83,41 @@ public class Portal : MonoBehaviour {
 			tankTransform.RotateAround (tankTransform.position, m_Transform.up, 90f);
 
 			tankTransform.position += m_Transform.up;
+
+			hasWarped.SetWarped (true);
+
+			Glow ();
+
+			m_LinkedPortal.Glow();
+
+			if (tankTransform.gameObject.name == "3DTank(Clone)") {
+
+				m_CameraControl.SetCubeSide (m_LinkedPortal.m_CubeSide);
+
+			}
+		}
+	}
+
+
+	void WarpAI(Collider tankCollider) {
+
+		WarpedBool hasWarped = tankCollider.GetComponent<WarpedBool> ();
+
+		if (!hasWarped.GetWarped ()) {
+
+			Transform tankTransform = tankCollider.gameObject.transform.parent.transform;
+
+			NavMeshAgent tankAgent = tankCollider.gameObject.transform.parent.GetComponent<NavMeshAgent> ();
+
+			Vector3 newPosition = tankTransform.position - m_Transform.position;
+
+			newPosition = Quaternion.AngleAxis (90f, m_Transform.up) * newPosition;
+
+			newPosition = newPosition + m_LinkedTransform.position + m_Transform.up;
+
+			tankAgent.Warp (newPosition);
+
+			tankTransform.RotateAround (tankTransform.position, m_Transform.up, 90f);
 
 			hasWarped.SetWarped (true);
 

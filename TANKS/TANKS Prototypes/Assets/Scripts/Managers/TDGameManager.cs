@@ -32,7 +32,7 @@ public class TDGameManager : MonoBehaviour
 		m_PlayerTank = new TDTankManager ();
 		m_PlayerTank.m_PlayerNumber = 1;
 		m_PlayerTank.m_Instance = 
-			Instantiate(m_PlayerPrefab, m_PlayerPrefab.transform.position, m_PlayerPrefab.transform.rotation) as GameObject;
+			Instantiate(m_PlayerPrefab, m_SpawnPoints[0].transform.position, m_SpawnPoints[0].transform.rotation) as GameObject;
 		m_PlayerTank.m_IsAITank = false;
 		m_PlayerTank.SetupPlayerTank ();
 

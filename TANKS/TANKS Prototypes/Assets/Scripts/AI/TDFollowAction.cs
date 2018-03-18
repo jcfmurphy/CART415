@@ -7,14 +7,16 @@ public class TDFollowAction : Action {
 
 	[HideInInspector] public Transform followTarget;
 
+	private float m_warpTimer = 0f;
+
 	public override void Act (StateController controller)
 	{
 		Follow (controller);
 	}
 
 	private void Follow (StateController controller) {
-
-		GameObject followObject = GameObject.Find ("3DTank");
+		
+		GameObject followObject = GameObject.Find ("3DTank(Clone)");
 
 		if (followObject != null) {
 			followTarget = followObject.transform;
@@ -22,5 +24,6 @@ public class TDFollowAction : Action {
 			controller.navMeshAgent.destination = followTarget.position;
 			controller.navMeshAgent.isStopped = false;
 		}
+			
 	}
 }
