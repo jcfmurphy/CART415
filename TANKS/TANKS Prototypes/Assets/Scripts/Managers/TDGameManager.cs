@@ -83,8 +83,10 @@ public class TDGameManager : MonoBehaviour
 		for (int i = 0; i < m_SpawnPoints.Count; i++) {
 			Transform spawnTransform = m_SpawnPoints [i].transform;
 			Vector3 checkLocation = spawnTransform.position + 1.3f * spawnTransform.up;
+			CubeSide spawnCubeSide = m_SpawnPoints [i].GetComponent<TDSpawnPointSide> ().m_CubeSide;
+			CubeSide playerCubeSide = Camera.main.GetComponent<TDCameraControl> ().m_CubeSide;
 
-			if (!Physics.CheckBox(checkLocation, m_CheckBoxSize, spawnTransform.rotation)) {
+			if (!Physics.CheckBox(checkLocation, m_CheckBoxSize, spawnTransform.rotation) && spawnCubeSide != playerCubeSide) {
 				tempSpawnPoints.Add (m_SpawnPoints [i]);
 			}
 		}
@@ -104,7 +106,7 @@ public class TDGameManager : MonoBehaviour
 		yield return StartCoroutine(RoundPlaying());
 		yield return StartCoroutine(RoundEnding());
 
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
 	}
 
 
