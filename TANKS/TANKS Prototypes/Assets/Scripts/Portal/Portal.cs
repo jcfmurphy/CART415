@@ -7,6 +7,7 @@ public class Portal : MonoBehaviour {
 
 	public Portal m_LinkedPortal;
 	public CubeSide m_CubeSide;
+	public GameObject m_GhostPrefab;
 
 	private Color m_StartColor;
 	private Color m_StartEmission;
@@ -74,6 +75,8 @@ public class Portal : MonoBehaviour {
 
 			Transform tankTransform = tankCollider.gameObject.transform.parent.transform;
 
+			Instantiate (m_GhostPrefab, tankTransform.position, tankTransform.rotation);
+
 			Vector3 positionOffset = tankTransform.position - m_Transform.position;
 
 			positionOffset = Quaternion.AngleAxis (90f, m_Transform.up) * positionOffset;
@@ -103,6 +106,8 @@ public class Portal : MonoBehaviour {
 		if (!hasWarped.GetWarped ()) {
 
 			Transform tankTransform = tankCollider.gameObject.transform.parent.transform;
+
+			Instantiate (m_GhostPrefab, tankTransform.position, tankTransform.rotation);
 
 			NavMeshAgent tankAgent = tankCollider.gameObject.transform.parent.GetComponent<NavMeshAgent> ();
 

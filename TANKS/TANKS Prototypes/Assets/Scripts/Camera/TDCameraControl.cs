@@ -13,7 +13,7 @@ public class TDCameraControl : MonoBehaviour {
 	private Quaternion m_TargetRotation;
 	private Transform m_Transform;
 	private float m_MoveSpeed = 5.0f;
-	private float m_RotateSpeed = 10f;
+	private float m_RotateSpeed = 0.2f;
 
 	// Use this for initialization
 	void Start () {
