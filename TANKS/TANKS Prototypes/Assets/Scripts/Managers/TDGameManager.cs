@@ -135,6 +135,7 @@ public class TDGameManager : MonoBehaviour
 		m_MessageText.text = message;
 
 		DisableTankControl ();
+		m_CameraControl.EndRound ();
 
 		yield return m_EndWait;
 	}
