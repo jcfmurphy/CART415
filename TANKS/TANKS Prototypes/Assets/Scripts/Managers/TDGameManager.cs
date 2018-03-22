@@ -9,14 +9,15 @@ public class TDGameManager : MonoBehaviour
 
 	public float m_StartDelay = 3f;         
 	public float m_EndDelay = 3f; 
-	public int m_SpawnsRemaining = 10;
-	public Text m_MessageText;              
+	public Text m_MessageText1;
+	public Text m_MessageText2;
 	public GameObject m_AIPrefab;
 	public GameObject m_PlayerPrefab;
 	public List<Transform> m_SpawnPoints;
 	public TDCameraControl m_CameraControl;
 
-	private float m_SpawnDelay = 8f;
+	protected int m_SpawnsRemaining = 10;
+	protected float m_SpawnDelay = 8f;
 	protected float m_SpawnTimer = 5f;
 	protected Vector3 m_CheckBoxSize = new Vector3(1.25f, 1.25f, 1.25f);
 	protected TDTankManager[] m_AITanks;
@@ -122,7 +123,8 @@ public class TDGameManager : MonoBehaviour
 	{
 		EnableTankControl ();
 
-		m_MessageText.text = string.Empty;
+		m_MessageText1.text = string.Empty;
+		m_MessageText2.text = string.Empty;
 
 		while (!RoundOver()) {
 			yield return null;
@@ -131,8 +133,10 @@ public class TDGameManager : MonoBehaviour
 		
 	protected IEnumerator RoundEnding()
 	{
-		string message = EndMessage ();
-		m_MessageText.text = message;
+		string message1 = EndMessage (1);
+		string message2 = EndMessage (2);
+		m_MessageText1.text = message1;
+		m_MessageText2.text = message2;
 
 		DisableTankControl ();
 		m_CameraControl.EndRound ();
@@ -160,14 +164,24 @@ public class TDGameManager : MonoBehaviour
 	}
 
 
-	protected string EndMessage()
+	protected string EndMessage(int messageNumber)
 	{
 		string message;
 
-		if (m_PlayerTank.m_Instance.activeSelf) {
-			message = "YOU WIN!";
+		if (messageNumber == 1) {
+			if (m_PlayerTank.m_Instance.activeSelf) {
+				message = "YOU WIN!";
+			} else {
+				message = "YOU HAVE BEEN";
+			}
+		} else if (messageNumber == 2) {
+			if (m_PlayerTank.m_Instance.activeSelf) {
+				message = string.Empty;
+			} else {
+				message = "DEFEATED!";
+			}
 		} else {
-			message = "YOU HAVE BEEN DEFEATED!";
+			message = string.Empty;
 		}
 
 		return message;
