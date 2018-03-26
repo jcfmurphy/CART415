@@ -39,7 +39,6 @@ public class KingTankHealth : TankHealth
 		}
 
 		m_MaxVolume = maxVol;
-		print (m_MaxVolume);
 
 		TakeDamage (damage);
 
