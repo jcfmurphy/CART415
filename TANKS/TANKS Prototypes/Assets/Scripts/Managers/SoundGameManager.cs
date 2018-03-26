@@ -59,6 +59,10 @@ public class SoundGameManager : MonoBehaviour
 			SpawnTank ();
 		}
 
+		if (Input.GetButtonDown ("Cancel")) {
+			SceneManager.LoadScene(0);
+		}
+
 		m_AudioTime += Time.deltaTime;
 	}
 
@@ -111,7 +115,7 @@ public class SoundGameManager : MonoBehaviour
 		yield return StartCoroutine(RoundPlaying());
 		yield return StartCoroutine(RoundEnding());
 
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(3);
 	}
 
 
@@ -140,8 +144,6 @@ public class SoundGameManager : MonoBehaviour
 		m_MessageText.text = message;
 
 		DisableTankControl ();
-
-		m_ViveLaFrance.PlayDelayed (1f);
 
 		yield return m_EndWait;
 	}
@@ -174,6 +176,7 @@ public class SoundGameManager : MonoBehaviour
 			message = "YOU DEFEATED THE REVOLUTIONARIES!";
 		} else {
 			message = "THE KING IS DEAD!";
+			m_ViveLaFrance.PlayDelayed (1f);
 		}
 
 		return message;

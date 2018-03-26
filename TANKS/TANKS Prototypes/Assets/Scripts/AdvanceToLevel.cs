@@ -11,6 +11,6 @@ public class AdvanceToLevel : MonoBehaviour {
 	}
 
 	void LoadTheLevel () {
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene (5);
 	}
 }

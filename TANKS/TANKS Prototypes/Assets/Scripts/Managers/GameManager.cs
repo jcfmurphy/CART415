@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
     }
 
 
+	protected virtual void Update() {
+		if (Input.GetButtonDown ("Cancel")) {
+			SceneManager.LoadScene(0);
+		}
+	}
+
+
 	protected virtual void SpawnAllTanks()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
@@ -68,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         if (m_GameWinner != null)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         else
         {

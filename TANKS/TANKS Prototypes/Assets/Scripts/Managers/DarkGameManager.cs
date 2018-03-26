@@ -40,13 +40,17 @@ public class DarkGameManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
     }
-
+		
 
 	private void Update() {
 		m_ShotTimer += Time.deltaTime;
 
 		if (m_ShotTimer >= m_ShotLimit) {
 			SwitchActiveShooter();
+		}
+
+		if (Input.GetButtonDown ("Cancel")) {
+			SceneManager.LoadScene(0);
 		}
 	}
 
@@ -83,7 +87,7 @@ public class DarkGameManager : MonoBehaviour
 
         if (m_GameWinner != null)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
         else
         {

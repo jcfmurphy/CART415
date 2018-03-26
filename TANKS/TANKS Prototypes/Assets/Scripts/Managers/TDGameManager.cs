@@ -51,6 +51,10 @@ public class TDGameManager : MonoBehaviour
 	protected void Update() {
 		m_SpawnTimer += Time.deltaTime;
 
+		if (Input.GetButtonDown ("Cancel")) {
+			SceneManager.LoadScene(0);
+		}
+
 		if (m_SpawnTimer >= m_SpawnDelay && m_SpawnsRemaining > 0) {
 			SpawnTank ();
 		}
@@ -107,7 +111,7 @@ public class TDGameManager : MonoBehaviour
 		yield return StartCoroutine(RoundPlaying());
 		yield return StartCoroutine(RoundEnding());
 
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(5);
 	}
 
 
