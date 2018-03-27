@@ -94,8 +94,9 @@ public class SoundGameManager : MonoBehaviour
 
 		for (int i = 0; i < m_SpawnPoints.Count; i++) {
 			Vector3 checkLocation = new Vector3 (m_SpawnPoints [i].transform.position.x, m_SpawnPoints [i].transform.position.y + 1.3f, m_SpawnPoints [i].transform.position.z);
+			float distance = Vector3.Distance (checkLocation, m_KingTank.m_Instance.transform.position);
 
-			if (!Physics.CheckBox(checkLocation, m_CheckBoxSize, m_SpawnPoints[i].transform.rotation)) {
+			if (!Physics.CheckBox(checkLocation, m_CheckBoxSize, m_SpawnPoints[i].transform.rotation) && distance > 25f) {
 				tempSpawnPoints.Add (m_SpawnPoints [i]);
 			}
 		}

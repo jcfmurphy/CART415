@@ -16,7 +16,7 @@ public class LightFlicker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float offset = 1f + ((Mathf.PerlinNoise (Time.time * m_NoiseScale, 0f) - 0.5f) * 0.5f);
+		float offset = 0.75f + ((Mathf.PerlinNoise (Time.time * m_NoiseScale, 0f) - 0.5f) * 0.5f);
 
 		m_Light.color = m_OriginalColor * offset;
 	}
