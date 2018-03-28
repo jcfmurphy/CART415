@@ -6,7 +6,7 @@ public class SoundShellExplosion : ShellExplosion
 	protected override void Start()
     {
         Destroy(gameObject, m_MaxLifeTime);
-		m_MaxDamage = 130f;
+		m_MaxDamage = 180f;
     }
 
 

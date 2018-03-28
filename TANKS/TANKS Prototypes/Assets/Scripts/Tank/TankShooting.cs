@@ -28,7 +28,7 @@ public class TankShooting : MonoBehaviour
     }
 
 
-	protected void Start()
+	protected virtual void Start()
     {
         m_FireButton = "Fire" + m_PlayerNumber;
 

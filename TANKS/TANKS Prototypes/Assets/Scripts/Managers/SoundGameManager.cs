@@ -11,7 +11,8 @@ public class SoundGameManager : MonoBehaviour
 	public float m_EndDelay = 3f; 
 	public float m_SpawnDelay = 3f;
 	public int m_SpawnsRemaining = 30;
-	public Text m_MessageText;              
+	public Text m_MessageText;
+	public Text m_MessageText2;
 	public GameObject m_CitizenPrefab;
 	public GameObject m_KingPrefab;
 	public Transform m_KingSpawnPoint;
@@ -143,10 +144,13 @@ public class SoundGameManager : MonoBehaviour
 	{
 		string message = EndMessage ();
 		m_MessageText.text = message;
+		m_MessageText2.enabled = true;
 
 		DisableTankControl ();
 
-		yield return m_EndWait;
+		while (!Input.GetKeyDown (KeyCode.Return)) {
+			yield return null;
+		}
 	}
 
 
