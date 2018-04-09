@@ -104,7 +104,10 @@ public class DarkGameManager : MonoBehaviour
 		m_CameraControl.SetStartPositionAndSize ();
 
 		m_RoundNumber++;
-		m_MessageText.text = "ROUND " + m_RoundNumber;
+
+		if (m_RoundNumber != 1) {
+			m_MessageText.text = "ROUND " + m_RoundNumber;
+		}
 
 		yield return m_StartWait;
     }
