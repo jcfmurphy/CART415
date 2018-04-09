@@ -17,7 +17,7 @@ public class SelectOnInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetAxisRaw ("Vertical1") != 0 && m_ButtonSelected == false) {
+		if (Input.GetAxisRaw ("Vertical2") != 0 && m_ButtonSelected == false) {
 			m_EventSystem.SetSelectedGameObject (m_SelectedObject);
 			m_ButtonSelected = true;
 		}
