@@ -251,7 +251,7 @@ public class DarkGameManager : MonoBehaviour
 
 		m_Lights.Add(Instantiate (m_ShotLight, lightPos, lightRot));
 
-		while (m_Lights.Count > 10) {
+		while (m_Lights.Count > 6) {
 			Light destroyLight = m_Lights [0];
 			m_Lights.Remove (destroyLight);
 			Destroy (destroyLight.gameObject);
