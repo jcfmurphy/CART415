@@ -52,6 +52,8 @@ public class TDGameManager : MonoBehaviour
 		m_SpawnTimer += Time.deltaTime;
 
 		if (Input.GetButtonDown ("Cancel")) {
+			GameObject musicObject = GameObject.Find ("Main Music");
+			GameObject.Destroy (musicObject);
 			SceneManager.LoadScene(0);
 		}
 
